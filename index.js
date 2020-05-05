@@ -62,8 +62,7 @@ numeros = req.body
     })
     
     res.send("A soma dos campos é: " +preencherObjeto)
-  // preencherObjeto.req.body.cmp1;
-   // res.render(_dirname+'/view/exercicio1.html',{cmp1:preencherObjeto});
+  
   
 })
 
