@@ -48,7 +48,7 @@ res.render(_dirname+'/view/home.html');
 
 app.get("/exercicio",  (req, res) => {
  
-res.render(_dirname+'/view/exercicio1.html');
+res.render(_dirname+'/view/exercicio2.html');
 })
 
 app.post('/soma',  function(req,res)  {
@@ -66,71 +66,6 @@ numeros = req.body
    // res.render(_dirname+'/view/exercicio1.html',{cmp1:preencherObjeto});
   
 })
-
-
-
-
-
-app.get("/exercicio2",  (req, res) => {
- 
-res.render(_dirname+'/view/exercicio2.html');
-})
-
-app.get('/sub',  function(req,res)  {
-
- let {valor1, valor2} = req.query;
-
-    var sub = valor1 - valor2;
-    
-     res.send("A subtração dos número é:"+sub);
-})
-
-app.post('/sub',  function(req,res)  {
-
-  var valor1=req.body.valor1;
-  var valor2=req.body.valor2;
-
-  var soma = parseInt(valor1) + parseInt(valor2);
-    
-     res.send("A soma dos número é:"+soma);
-
-})
-
-
-
-app.get("/exer1",  (req, res) => {
- 
-res.render(_dirname+'/view/Exer1.html');
-})
-
-app.post('/resultadoSoma',  function(req,res)  {
-
-valores = req.body
-    var formularioCamp = Object.values(valores).reduce( (valor1, valor2) => {
-      //A chamada é feita em recursão
-        num1 = parseInt(valor1)
-        num2 = parseInt(valor2)
-        return num1 + num2
-    })
-    
-    res.send("A soma total é: " +formularioCamp)
-  
-  
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
