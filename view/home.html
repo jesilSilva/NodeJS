@@ -1,82 +1,62 @@
+<html>
+<head>
+   
+    <style type="text/css">
+        
+        h1{
+            font-family: arial;
+            font-size: 19px;
+            font-style: italic;
+        }
+        input{
+            display: block;
+            margin: 10px;
+            width: 250px;
+            border-radius: 12px;
+        }
+        button{
+            border-radius: 35px;
+            width: 150px;
+            margin: 10px;
+            padding: 10px;
+            color: green;
+        }
+
+    </style>
+</head>
+<body>
+ <meta charset="utf-8">
+      <h1>Informe o número de campos que deseja criar</h1>
+            <div id="formulario" style="display: block;">
+            	<input id="cmp1" name="campos" type="number">
+	<button type="button" onclick="criarformulario()">Adicionar</button>
+	
+	</div>   
+	 
+	<form id="newForm" action="/soma" method="post"></form>
+
+    <script>
+
+function criarformulario(){
+            let numeroCampos = document.getElementById('cmp1').value
+            let form = document.getElementById('newForm')
+            document.getElementById("formulario").style.display = "none";
+            
+            for(let i = 0; i < numeroCampos; i++){
+                form.insertAdjacentHTML("afterbegin", `<input type='number' name=${"param"+i} required> `)   
+            }
+
+            form.insertAdjacentHTML("beforeend", "<button onclick='somarCampos()' type='submit'>Clique para Somar</button>")   
+        }
 
 
+        
 
-/*Aqui começa o código de verdade*/ 
-var express = require('express')
-var app = express()
-
-const path=require('path');
-const router = express.Router();
-_dirname=path.resolve();
-
-
-var bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({extended: false}));
-
-
-app.engine('html', require('ejs').renderFile);
-
-app.get('/',  (req, res) => {
- 
-res.render(_dirname+'/view/home.html');
-})
-
-
-app.get('/operacao',  function(req,res)  {
-
- let {numero1, numero2} = req.query;
-
-    var subtracao = numero1 - numero2;
-    
-     res.send("O resultado da subtração dos número é:"+subtracao);
-
-res.render(_dirname+'/view/home.html');
-})
-
-app.post('/operacao',  function(req,res)  {
-
-  var numero1=req.body.numer1;
-  var numero2=req.body.numer2;
-
-  var soma = parseInt(numero1) + parseInt(numero2);
-    
-     res.send("O resultado da soma dos número é:"+soma);
-
-res.render(_dirname+'/view/home.html');
-})
-
-
-app.get("/exercicio",  (req, res) => {
- 
-res.render(_dirname+'/view/exercicio2.html');
-})
-
-app.post('/soma',  function(req,res)  {
-
-numeros = req.body
-    var preencherObjeto = Object.values(numeros).reduce( (itemA, itemB) => {
-      //A chamada é feita em recursão
-        numero1 = parseInt(itemA)
-        numero2 = parseInt(itemB)
-        return numero1 + numero2
-    })
-    
-    res.send("A soma dos campos é: " +preencherObjeto)
-  // preencherObjeto.req.body.cmp1;
-   // res.render(_dirname+'/view/exercicio1.html',{cmp1:preencherObjeto});
-  
-})
+    </script>
 
 
 
 
 
-
-
-
-
-
-
-app.listen(process.env.port || 3000);
-console.log('Running at Port 3000!');
-
+</body>
+</html>
